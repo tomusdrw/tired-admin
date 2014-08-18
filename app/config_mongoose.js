@@ -13,8 +13,8 @@ var ConfigMongoose = function (path) {
         result.resolve(mongoose);
     });
 
-    return result.promise.fail(function () {
-        console.error('connection error');
+    return result.promise.fail(function (err) {
+        console.error(err);
     });
 };
 
