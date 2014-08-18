@@ -1,5 +1,9 @@
 extends app
 
 block content
-    h1 Tired Admin 
-    | #{collections}
+    .col-md-12
+        h1 Tired Admin 
+        ul.list-group
+            each collection in collections
+                a.list-group-item(href='/collection/#{collection}') #{collection}
+

@@ -12,6 +12,11 @@ var configExpress = function (models) {
 
     var index = require('../routes/index');
     app.get('/', index(models));
+
+    var collection = require ('../routes/collection');
+    app.get('/collection/:collection', collection(models));
+
+
     app.listen(5090);
 };
 
