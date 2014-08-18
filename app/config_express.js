@@ -13,8 +13,9 @@ var configExpress = function (models) {
     var index = require('../routes/index');
     app.get('/', index(models));
 
-    var collection = require ('../routes/collection');
-    app.get('/collection/:collection', collection(models));
+    var collection = require ('../routes/collection')(models)
+    app.get('/collection/:collection', collection.collection);
+    app.get('/collection/:collection/:id', collection.item);
 
 
     app.listen(5090);

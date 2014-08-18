@@ -1,0 +1,8 @@
+extends app
+
+block content
+    .col-md-12
+        h1 #{item._id}
+        .form-group
+            .col-md-8.col-md-offset-2
+                textarea.form-control(rows="20") #{item}

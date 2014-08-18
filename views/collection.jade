@@ -1,0 +1,8 @@
+extends app
+
+block content
+    .col-md-12
+        h1 #{collection}
+        ul.list-group
+            each item in items
+                a.list-group-item(href='/collection/#{collection}/#{item._id}') #{item}

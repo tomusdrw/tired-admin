@@ -1,4 +1,4 @@
 node_modules
 bower_components
 models
-.swp
+*.swp
