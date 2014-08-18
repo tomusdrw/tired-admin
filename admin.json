@@ -1,0 +1,7 @@
+{
+    "dbpath": "mongodb://localhost/platform-development",
+    "models": [
+        "/Users/marekkotewicz/xplatform/devmeetings-slidesapp/platform/app/models/user.js",
+        "/Users/marekkotewicz/xplatform/devmeetings-slidesapp/platform/app/models/"
+    ]
+}
