@@ -1,8 +1,20 @@
 extends app
 
+append scripts
+    script(src='/static/bower_components/ace-builds/src-noconflict/ace.js', type='text/javascript', charset='utf-8')
+    script.
+        var editor = ace.edit('editor');
+        editor.setTheme('ace/theme/chrome');
+        editor.getSession().setMode('ace/mode/json');
+
 block content
+    style.
+        #editor {
+            height: 400px;    
+        }
+
     .col-md-12
-        h1 #{item._id}
+        h1 #{id}
         .form-group
             .col-md-8.col-md-offset-2
-                textarea.form-control(rows="20") #{item}
+                #editor #{item}

@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.2.0",
-    "less": "~1.7.4"
+    "less": "~1.7.4",
+    "ace-builds": "~1.1.6"
   }
 }

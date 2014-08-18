@@ -33,7 +33,8 @@ var Collection = function (models) {
 
             mod.findById(id).exec().then(function (item) {
                 res.render('item.jade', {
-                    item: item
+                    id: item._id,
+                    item: JSON.stringify(item, undefined, 2)
                 });
             }, function (err) {
                 console.error(err);
