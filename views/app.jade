@@ -1,0 +1,13 @@
+doctype html
+html.full-height(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width')
+        block css
+            link(rel='stylesheet/less', type='text/css', href='/static/less/app.less')
+        block js
+            script(src='/static/bower_components/less/dist/less-1.7.4.js')
+
+    body
+        block content
+

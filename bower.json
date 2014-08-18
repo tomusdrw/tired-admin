@@ -1,0 +1,21 @@
+{
+  "name": "tired-admin",
+  "version": "0.0.0",
+  "homepage": "https://github.com/debris/tired-admin",
+  "authors": [
+    "Marek Kotewicz <marek.kotewicz@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "less": "~1.7.4"
+  }
+}
