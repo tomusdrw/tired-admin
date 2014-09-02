@@ -6,9 +6,12 @@ var app = express();
 
 var configExpress = function (models) {
     
-    app.use(bodyParser.json());
+    app.use(bodyParser.json({
+        limit: '50mb'
+    }));
     app.use(bodyParser.urlencoded({
-        extended: true
+        extended: true,
+        limit: '50mb'
     }));
 
     app.engine('jade', jade.__express);
