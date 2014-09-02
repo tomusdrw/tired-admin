@@ -3,18 +3,46 @@ extends app
 append scripts
     script(src='/static/bower_components/ace-builds/src-noconflict/ace.js', type='text/javascript', charset='utf-8')
     script.
-        var editor = ace.edit('editor');
-        editor.setTheme('ace/theme/chrome');
-        editor.getSession().setMode('ace/mode/json');
+        $(function () {
+            $('textarea[data-editor]').each(function () {
+                var textarea = $(this);
+     
+                var mode = textarea.data('editor');
+     
+                var editDiv = $('<div>', {
+                    position: 'absolute',
+                    width: textarea.width(),
+                    height: textarea.height(),
+                    'class': textarea.attr('class')
+                }).insertBefore(textarea);
+     
+                textarea.css('visibility', 'hidden');
+     
+                var editor = ace.edit(editDiv[0]);
+                //-editor.renderer.setShowGutter(false);
+                editor.getSession().setValue(textarea.val());
+                editor.setTheme('ace/theme/chrome');
+                editor.getSession().setMode("ace/mode/" + mode);
+                // editor.setTheme("ace/theme/idle_fingers");
+                
+                // copy back to textarea on form submit...
+                textarea.closest('form').submit(function () {
+                    textarea.val(editor.getSession().getValue());
+                })
+     
+            });
+        });
 
 block content
-    style.
-        #editor {
-            height: 400px;    
-        }
-
     .col-md-12
-        h1 #{id}
-        .form-group
-            .col-md-8.col-md-offset-2
-                #editor #{item}
+        form(action='/collection/#{collection}/#{item._id}', method="post")
+            h1 id: #{item._id}
+            .form-group
+                button.btn.btn-primary(type='submit') Save
+            .form-group
+                .col-md-8.col-md-offset-2
+                    input.form-control(type='text', name='test')
+            .form-group
+                .col-md-8.col-md-offset-2
+                    textarea.form-control(rows='50', name='item' data-editor='json') #{prettyItem}
+

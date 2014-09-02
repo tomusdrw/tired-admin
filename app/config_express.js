@@ -1,9 +1,16 @@
 var express = require('express'),
     morgan = require('morgan'),
-    jade = require('jade');
+    jade = require('jade'),
+    bodyParser = require('body-parser');
 var app = express();
 
 var configExpress = function (models) {
+    
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
+
     app.engine('jade', jade.__express);
     app.use(morgan());
 
@@ -16,6 +23,7 @@ var configExpress = function (models) {
     var collection = require ('../routes/collection')(models)
     app.get('/collection/:collection', collection.collection);
     app.get('/collection/:collection/:id', collection.item);
+    app.post('/collection/:collection/:id', collection.edit);
 
 
     app.listen(5090);
