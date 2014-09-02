@@ -26,7 +26,7 @@ var configExpress = function (models) {
     app.post('/collection/:collection/:id', collection.edit);
 
 
-    app.listen(5090);
+    app.listen(5090, 'localhost');
 };
 
 module.exports = configExpress;
