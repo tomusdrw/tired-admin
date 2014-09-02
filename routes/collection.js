@@ -11,7 +11,7 @@ var Collection = function (models) {
                 return;
             }
 
-            mod.find({}).exec().then(function (items) {
+            mod.find({}).select('_id').exec().then(function (items) {
                 res.render('collection.jade', {
                     collection: name,
                     items: items
