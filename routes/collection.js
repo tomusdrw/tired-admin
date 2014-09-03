@@ -1,3 +1,5 @@
+var Q = require('q');
+
 
 var Collection = function (models) {
     
@@ -68,6 +70,48 @@ var Collection = function (models) {
                 console.error(err);
                 res.send(400, err);
             });
+        }, 
+        delete: function (req, res) {
+            var name = req.params.collection;
+            var id = req.params.id;
+            var mod = models[name];
+            
+            if (!mod) {
+                res.send(404);
+                return;
+            }
+
+            Q.ninvoke(mod, 'remove', {
+                _id: id
+            }).then(function () {
+                res.redirect('/collection/' + name);
+            }, function (err) {
+                res.send(400);
+            });
+        
+        },
+        create: function (req, res) {
+            var name = req.params.collection;
+            var mod = models[name];
+
+            if (!mod) {
+                res.send(404);
+                return;
+            }
+
+            if (req.body && req.body.item) {
+                var obj = JSON.parse(req.body.item);
+            }
+
+            delete req.body._id;
+            delete req.body._ver;
+
+            Q.ninvoke(mod, 'create', obj || {}).then(function (newObj) {
+                res.redirect('/collection/' + name + '/' + newObj._id);
+            }, function (err) {
+                console.error(err);
+                res.sedn(400, err);
+            })
         }
     }
 };

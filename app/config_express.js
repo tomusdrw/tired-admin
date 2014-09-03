@@ -26,7 +26,18 @@ var configExpress = function (models) {
     var collection = require ('../routes/collection')(models)
     app.get('/collection/:collection', collection.collection);
     app.get('/collection/:collection/:id', collection.item);
-    app.post('/collection/:collection/:id', collection.edit);
+
+    app.post('/collection/:collection', collection.create);
+    app.post('/collection/:collection/:id', function (req, res, next) {
+        if (req.query.action === 'edit') {
+            collection.edit(req, res, next); 
+        } else if (req.query.action === 'delete') {
+            collection.delete(req, res, next);
+        } else {
+            res.send(404);
+        }
+    });
+
 
 
     app.listen(5090, 'localhost');

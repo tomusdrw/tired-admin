@@ -3,6 +3,9 @@ extends app
 block content
     .col-md-12
         h1 #{collection}
+        form(action='/collection/#{collection}', method='post')
+            .form-group
+                button.btn.btn-success(type='submit') New
         ul.list-group
             each item in items
                 a.list-group-item(href='/collection/#{collection}/#{item._id}') #{item}

@@ -35,8 +35,11 @@ append scripts
 
 block content
     .col-md-12
-        form(action='/collection/#{collection}/#{item._id}', method="post")
-            h1 id: #{item._id}
+        h1 id: #{item._id}
+        form(action='/collection/#{collection}/#{item._id}?action=delete', method='post')
+            .form-group
+                button.btn.btn-danger(type='submit') Delete
+        form(action='/collection/#{collection}/#{item._id}?action=edit', method='post')
             .form-group
                 button.btn.btn-primary(type='submit') Save
             .form-group
